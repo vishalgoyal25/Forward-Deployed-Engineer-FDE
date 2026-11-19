@@ -1,0 +1,182 @@
+# ==============================================================================
+# .gitignore — AI Forward Deployed Engineer (FDE) Repository
+# Tailored for Enterprise AI Delivery, GCP, Client Data Governance & Security
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. CRITICAL: API Keys, Cloud Credentials & Secrets (FDE Security Requirement)
+# Never leak client keys, cloud credentials, or LLM gateway secrets to Git.
+# ------------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.env
+secrets/
+private/
+credentials/
+*.pem
+*.key
+*.cert
+*.pfx
+
+# Google Cloud Platform (GCP) Service Account Keys & Auth Tokens
+*gcp*.json
+*service-account*.json
+service_account.json
+keyfile.json
+client_secrets*.json
+adc.json
+.gcloud/
+.gsutil/
+
+# Bifrost Gateway & LLM Provider Keys
+bifrost_keys.json
+virtual_keys.json
+*token*.json
+*secret*.yaml
+*secret*.yml
+
+# ------------------------------------------------------------------------------
+# 2. CLIENT DATA GOVERNANCE & PII / PHI PROTECTION (HIPAA / Enterprise Compliance)
+# As an FDE, raw client data (e.g. Nirmaya Hospital claims, PDFs) must never be committed.
+# ------------------------------------------------------------------------------
+data/raw/
+data/client_samples/
+data/incoming/
+data/processed/
+data/claims/
+data/invoices/
+data/settlement_letters/
+*.pdf
+*.xlsx
+*.xls
+*.csv
+*.tsv
+!data/sample_templates/*.csv
+!data/sample_templates/*.json
+
+# Database Dumps & Exports (MongoDB, HMS, SQLite)
+*.sql
+*.dump
+*.tar.gz
+*.rdb
+*.sqlite
+*.sqlite3
+data/db/
+mongodata/
+
+# ------------------------------------------------------------------------------
+# 3. VECTOR DATABASES & LOCAL EMBEDDING INDEXES
+# ------------------------------------------------------------------------------
+qdrant_storage/
+storage/
+chroma_db/
+.chroma/
+*.faiss
+*.index
+*.ann
+*.bin
+*.pt
+*.safetensors
+*.onnx
+
+# ------------------------------------------------------------------------------
+# 4. LLM OBSERVABILITY, EVALUATION & TELEMETRY (Logfire, DeepEval, RAGAS)
+# ------------------------------------------------------------------------------
+# Pydantic Logfire local trace exports & telemetry
+logfire_reports/
+*.logfire
+traces/
+*.trace
+
+# Evaluation artifacts (DeepEval, RAGAS benchmarks)
+.deepeval/
+.ragas/
+eval_results/
+benchmark_outputs/
+test_reports/
+
+# NeMo Guardrails local cache
+.guardrails/
+.cache/
+hf_cache/
+
+# ------------------------------------------------------------------------------
+# 5. PYTHON & ENVIRONMENT HYGIENE
+# ------------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# ------------------------------------------------------------------------------
+# 6. JUPYTER NOTEBOOKS & PROTOTYPES
+# ------------------------------------------------------------------------------
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+*-checkpoint.ipynb
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ------------------------------------------------------------------------------
+# 7. CONTAINERIZATION & CLOUD BUILD (Docker & Cloud Run)
+# ------------------------------------------------------------------------------
+.docker/
+docker-compose.override.yml
+*.tar
+
+# Terraform / Infrastructure State
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# ------------------------------------------------------------------------------
+# 8. OPERATING SYSTEM & IDE ARTIFACTS
+# ------------------------------------------------------------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDEs & Editors
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.sublime-project
+*.sublime-workspace
